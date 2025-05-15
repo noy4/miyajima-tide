@@ -70,7 +70,7 @@ export class WeatherState {
 
   async fetchData() {
     this.data = dummy
-    return
+    // return
 
     const [weatherData, tideData] = await Promise.all([
       getTodaysAndTomorrowsWeather(),
