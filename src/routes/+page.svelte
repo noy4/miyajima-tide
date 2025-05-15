@@ -1,5 +1,6 @@
 <script lang='ts'>
   import { WeatherState } from '$lib/state.svelte'
+  import { format, parseISO } from 'date-fns'
 
   const state = new WeatherState()
   const forecast = $derived(state.data)
@@ -27,7 +28,7 @@
         <tr>
           <th></th>
           {#each forecast as day}
-            <th>{day.date}</th>
+            <th>{format(parseISO(day.date), 'M.d (E)')}</th>
           {/each}
         </tr>
         <tr>
