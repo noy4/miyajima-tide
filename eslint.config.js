@@ -4,5 +4,6 @@ export default antfu({
   svelte: true,
   rules: {
     'no-console': 'off',
+    'no-irregular-whitespace': 'off',
   },
 })

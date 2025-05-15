@@ -1,5 +1,12 @@
+/**
+ * [気象庁 | 潮汐・海面水位のデータ 潮位表　広島（HIROSHIMA）](https://www.data.jma.go.jp/kaiyou/db/tide/suisan/suisan.php?stn=Q8)
+ * ex. 'https://www.data.jma.go.jp/kaiyou/data/db/tide/suisan/txt/2025/Q8.txt'
+ */
 export async function getTideData() {
-  const url = 'https://www.data.jma.go.jp/kaiyou/data/db/tide/suisan/txt/2025/Q8.txt'
+  const currentYear = new Date().getFullYear()
+  const locationCode = 'Q8' // 広島
+  const url = `https://www.data.jma.go.jp/kaiyou/data/db/tide/suisan/txt/${currentYear}/${locationCode}.txt`
+
   const response = await fetch(url)
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)
