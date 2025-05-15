@@ -36,20 +36,15 @@
             {/each}
           </tr>
           <tr>
-            <td>Weather</td>
+            <td></td>
             {#each forecast as day}
               <td>
                 <div class='flex flex-col items-center'>
                   <img src={day.condition_icon} alt={day.condition_text} class='w-32' />
                   {day.condition_text}
+                  <div>{day.maxtemp_c}° / {day.mintemp_c}°</div>
                 </div>
               </td>
-            {/each}
-          </tr>
-          <tr>
-            <td>Temp (Max / Min)</td>
-            {#each forecast as day}
-              <td>{day.maxtemp_c}° / {day.mintemp_c}°</td>
             {/each}
           </tr>
           <tr>
