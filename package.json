@@ -14,7 +14,8 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@unocss/reset": "^66.1.2",
+    "@ameinhardt/unocss-preset-daisy": "^1.1.7",
+    "daisyui": "^5.0.35",
     "date-fns": "^4.1.0"
   },
   "devDependencies": {
