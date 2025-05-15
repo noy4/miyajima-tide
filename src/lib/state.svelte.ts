@@ -1,13 +1,14 @@
 import { getTideData } from '$lib/tide'
 import { getTodaysAndTomorrowsWeather } from '$lib/weather'
+import { convertTo24HourFormat } from './utils'
 
 const dummy = [
   {
     date: '2025-05-15',
     maxtemp_c: 20.4,
     mintemp_c: 15.9,
-    sunrise: '05:08 AM',
-    sunset: '07:05 PM',
+    sunrise: '05:08',
+    sunset: '19:05',
     condition_text: 'Sunny',
     condition_icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
     highTides: [
@@ -27,8 +28,8 @@ const dummy = [
     date: '2025-05-16',
     maxtemp_c: 19.7,
     mintemp_c: 16.8,
-    sunrise: '05:07 AM',
-    sunset: '07:05 PM',
+    sunrise: '05:07',
+    sunset: '19:05',
     condition_text: 'Patchy rain nearby',
     condition_icon: '//cdn.weatherapi.com/weather/64x64/day/176.png',
     highTides: [
@@ -84,14 +85,13 @@ export class WeatherState {
         date,
         maxtemp_c: day.day.maxtemp_c,
         mintemp_c: day.day.mintemp_c,
-        sunrise: day.astro.sunrise,
-        sunset: day.astro.sunset,
+        sunrise: convertTo24HourFormat(day.astro.sunrise),
+        sunset: convertTo24HourFormat(day.astro.sunset),
         condition_text: day.day.condition.text,
         condition_icon: day.day.condition.icon,
         highTides: tide.highTides,
         lowTides: tide.lowTides,
       }
     })
-    console.log('this.data:', this.data)
   }
 }
