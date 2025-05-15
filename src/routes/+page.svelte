@@ -28,8 +28,8 @@
   }
 </style>
 
-<main class='flex justify-center items-center min-h-100dvh p-4'>
-  <div class='text-2xl p-16 max-w-4xl w-full bg-white rounded rounded-xl'>
+<main class='flex justify-center items-center min-h-100dvh p-2'>
+  <div class='text-2xl px-2 sm:px-16 py-16 max-w-4xl w-full bg-white rounded rounded-xl'>
     {#if loading}
       ...loading
     {:else}
