@@ -25,9 +25,6 @@
     padding: 6px;
     text-align: center;
   }
-  th {
-    /* background: #f0f0f0; */
-  }
 </style>
 
 <main class='flex justify-center items-center h-100dvh p-4'>
