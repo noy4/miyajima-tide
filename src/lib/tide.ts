@@ -6,7 +6,6 @@ export async function getTideData() {
   }
   const text = await response.text()
   const tideData = parseTideFile(text)
-  console.log('tideData:', tideData)
   return tideData
 }
 
@@ -41,7 +40,10 @@ function parseTideLine(line: string): Tide {
     highTides.push(
       timeStr === '9999'
         ? { time: null, tide: null }
-        : { time: `${timeStr.slice(0, 2)}:${timeStr.slice(2)}`, tide: Number.parseInt(tideStr, 10) },
+        : {
+            time: `${timeStr.slice(0, 2).trim().padStart(2, '0')}:${timeStr.slice(2).trim().padStart(2, '0')}`,
+            tide: Number.parseInt(tideStr, 10),
+          },
     )
   }
 
@@ -52,7 +54,10 @@ function parseTideLine(line: string): Tide {
     lowTides.push(
       timeStr === '9999'
         ? { time: null, tide: null }
-        : { time: `${timeStr.slice(0, 2)}:${timeStr.slice(2)}`, tide: Number.parseInt(tideStr, 10) },
+        : {
+            time: `${timeStr.slice(0, 2).trim().padStart(2, '0')}:${timeStr.slice(2).trim().padStart(2, '0')}`,
+            tide: Number.parseInt(tideStr, 10),
+          },
     )
   }
 
