@@ -65,7 +65,7 @@ interface ForecastDay {
   hour: HourWeather[]
 }
 
-interface WeatherAPIResponse {
+export interface WeatherAPIResponse {
   location: {
     name: string
     region: string
@@ -107,8 +107,7 @@ export interface SimplifiedWeatherForecast {
   condition_icon: string
 }
 
-export async function getTodaysAndTomorrowsWeather(
-) {
+export async function getTodaysAndTomorrowsWeather() {
   const apiKey = 'fcd34af252da443293102038251505'
   const location = 'Miyajima'
   const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=2&aqi=no&alerts=no`
