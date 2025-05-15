@@ -6,6 +6,8 @@
 </svelte:head>
 
 <script lang='ts'>
+  import highTideImg from '$lib/assets/high-tide.png'
+  import lowTideImg from '$lib/assets/low-tide.png'
   import { WeatherState } from '$lib/state.svelte'
   import { format, parseISO } from 'date-fns'
 
@@ -60,7 +62,12 @@
             {/each}
           </tr>
           <tr>
-            <td>High Tide</td>
+            <td>
+              <div class='flex justify-center items-center'>
+                High Tide
+                <img src={highTideImg} alt='high tide' class='w-20' />
+              </div>
+            </td>
             {#each forecast as day}
               <td>
                 {#each day.highTides.filter(t => t.time) as tide}
@@ -70,7 +77,12 @@
             {/each}
           </tr>
           <tr>
-            <td>Low Tide</td>
+            <td>
+              <div class='flex justify-center items-center'>
+                <!-- <img src={lowTideImg} alt='high tide' class='w-20' /> -->
+                Low Tide
+              </div>
+            </td>
             {#each forecast as day}
               <td>
                 {#each day.lowTides.filter(t => t.time) as tide}
