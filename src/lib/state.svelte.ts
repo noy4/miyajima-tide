@@ -2,7 +2,53 @@ import { getTideData } from '$lib/tide'
 import { getTodaysAndTomorrowsWeather } from '$lib/weather'
 import { convertTo24HourFormat } from './utils'
 
-const dummy = [
+export interface DateData {
+  date: string
+  maxtemp_c: number
+  mintemp_c: number
+  sunrise: string
+  sunset: string
+  condition_text: string
+  condition_icon: string
+
+  highTides: { time: string | null, tide: number | null }[]
+  lowTides: { time: string | null, tide: number | null }[]
+}
+
+export class WeatherState {
+  data: DateData[] = $state([])
+
+  constructor() {
+    $effect(() => {
+      this.fetchData()
+    })
+  }
+
+  async fetchData() {
+    const [weatherData, tideData] = await Promise.all([
+      getTodaysAndTomorrowsWeather(),
+      getTideData(),
+    ])
+    const days = weatherData.forecast.forecastday.slice(0, 2)
+    this.data = days.map((day) => {
+      const date = day.date
+      const tide = tideData.find(v => v.date === date)!
+      return {
+        date,
+        maxtemp_c: day.day.maxtemp_c,
+        mintemp_c: day.day.mintemp_c,
+        sunrise: convertTo24HourFormat(day.astro.sunrise),
+        sunset: convertTo24HourFormat(day.astro.sunset),
+        condition_text: day.day.condition.text,
+        condition_icon: day.day.condition.icon,
+        highTides: tide.highTides,
+        lowTides: tide.lowTides,
+      }
+    })
+  }
+}
+
+const _sampleData = [
   {
     date: '2025-05-15',
     maxtemp_c: 20.4,
@@ -46,52 +92,3 @@ const dummy = [
     ],
   },
 ]
-
-export interface DateData {
-  date: string
-  maxtemp_c: number
-  mintemp_c: number
-  sunrise: string
-  sunset: string
-  condition_text: string
-  condition_icon: string
-
-  highTides: { time: string | null, tide: number | null }[]
-  lowTides: { time: string | null, tide: number | null }[]
-}
-
-export class WeatherState {
-  data: DateData[] = $state([])
-
-  constructor() {
-    $effect(() => {
-      this.fetchData()
-    })
-  }
-
-  async fetchData() {
-    this.data = dummy
-    // return
-
-    const [weatherData, tideData] = await Promise.all([
-      getTodaysAndTomorrowsWeather(),
-      getTideData(),
-    ])
-    const days = weatherData.forecast.forecastday.slice(0, 2)
-    this.data = days.map((day) => {
-      const date = day.date
-      const tide = tideData.find(v => v.date === date)!
-      return {
-        date,
-        maxtemp_c: day.day.maxtemp_c,
-        mintemp_c: day.day.mintemp_c,
-        sunrise: convertTo24HourFormat(day.astro.sunrise),
-        sunset: convertTo24HourFormat(day.astro.sunset),
-        condition_text: day.day.condition.text,
-        condition_icon: day.day.condition.icon,
-        highTides: tide.highTides,
-        lowTides: tide.lowTides,
-      }
-    })
-  }
-}
