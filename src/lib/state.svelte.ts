@@ -1,6 +1,38 @@
 import { getTideData } from '$lib/tide'
 import { getTodaysAndTomorrowsWeather } from '$lib/weather'
 
+const dummy = [
+  {
+    date: '2025-05-15',
+    maxtemp_c: 20.4,
+    mintemp_c: 15.9,
+    condition_text: 'Sunny',
+    condition_icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+    highTides: [
+      { time: '10:39', tide: 300 },
+      { time: '23:38', tide: 339 },
+    ],
+    lowTides: [
+      { time: '05:01', tide: 121 },
+      { time: '17:00', tide: 28 },
+    ],
+  },
+  {
+    date: '2025-05-16',
+    maxtemp_c: 19.7,
+    mintemp_c: 16.8,
+    condition_text: 'Patchy rain nearby',
+    condition_icon: '//cdn.weatherapi.com/weather/64x64/day/176.png',
+    highTides: [
+      { time: '11:12', tide: 292 },
+    ],
+    lowTides: [
+      { time: '05:36', tide: 130 },
+      { time: '17:34', tide: 35 },
+    ],
+  },
+]
+
 export interface DateData {
   date: string
   maxtemp_c: number
@@ -22,6 +54,9 @@ export class WeatherState {
   }
 
   async fetchData() {
+    this.data = dummy
+    return
+
     const [weatherData, tideData] = await Promise.all([
       getTodaysAndTomorrowsWeather(),
       getTideData(),

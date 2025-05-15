@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { WeatherState } from './state.svelte'
+  import { WeatherState } from '$lib/state.svelte'
 
   const state = new WeatherState()
 </script>

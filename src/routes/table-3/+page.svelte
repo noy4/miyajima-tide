@@ -21,6 +21,7 @@
   }
 </style>
 
+<h2>Weather & Tide Forecast (Vertical Layout)</h2>
 <table>
   <tbody>
     <tr>
