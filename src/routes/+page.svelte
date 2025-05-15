@@ -1,3 +1,9 @@
+<svelte:head>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous'>
+  <link href='https://fonts.googleapis.com/css2?family=Caveat&display=swap' rel='stylesheet'>
+</svelte:head>
+
 <script lang='ts'>
   import { WeatherState } from '$lib/state.svelte'
   import { format, parseISO } from 'date-fns'
@@ -9,6 +15,9 @@
 <style>
   :global(body) {
     background: #f0f0f0;
+  }
+  main {
+    font-family: 'Caveat', cursive;
   }
   table {
     border-collapse: collapse;
@@ -24,7 +33,7 @@
   }
 </style>
 
-<div class='p-4'>
+<main class='p-4'>
   <div class='text-2xl p-4 max-w-4xl bg-white rounded rounded-xl'>
     <div class='overflow-x-auto w-full'>
       <table>
@@ -80,4 +89,4 @@
       </table>
     </div>
   </div>
-</div>
+</main>
