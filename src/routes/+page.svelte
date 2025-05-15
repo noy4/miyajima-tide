@@ -45,11 +45,20 @@
       {/each}
     </tr>
     <tr>
+      <td>Sunrise / Sunset</td>
+      {#each forecast as day}
+        <td>
+          {day.sunrise}<br />
+          {day.sunset}
+        </td>
+      {/each}
+    </tr>
+    <tr>
       <td>High Tide</td>
       {#each forecast as day}
         <td>
           {#each day.highTides.filter(t => t.time) as tide}
-            <div>{tide.time}<br />({tide.tide} cm)</div>
+            <div>{tide.time}</div>
           {/each}
         </td>
       {/each}
@@ -59,7 +68,7 @@
       {#each forecast as day}
         <td>
           {#each day.lowTides.filter(t => t.time) as tide}
-            <div>{tide.time}<br />({tide.tide} cm)</div>
+            <div>{tide.time}</div>
           {/each}
         </td>
       {/each}
