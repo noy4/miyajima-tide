@@ -13,6 +13,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "@unocss/reset": "^66.1.2"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.0",
     "@eslint/compat": "^1.2.5",
