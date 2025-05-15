@@ -1,9 +1,11 @@
 <script lang='ts'>
   import type { Tide } from '$lib/tide'
   import { getTideData } from '$lib/tide'
+  import { getTodaysAndTomorrowsWeather } from '$lib/weather'
   import { onMount } from 'svelte'
 
   let filteredTideData: Tide[] = $state([])
+  let weatherData: any = $state([])
 
   function getFormattedDate(date: Date): string {
     const year = date.getFullYear()
@@ -26,10 +28,19 @@
     )
   }
 
+  async function fetchWeatherData() {
+    weatherData = await getTodaysAndTomorrowsWeather()
+  }
+
   onMount(() => {
-    fetchTideData()
+    fetchWeatherData()
+  // fetchTideData()
   })
 </script>
+
+<pre>
+  {JSON.stringify(weatherData, null, 2)}
+</pre>
 
 <pre>
   {JSON.stringify(filteredTideData, null, 2)}
