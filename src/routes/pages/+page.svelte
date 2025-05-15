@@ -1,7 +1,7 @@
 <script lang='ts'>
   const items = [
-    '/data-json',
-    '/date-data-json',
+    '/data',
+    '/date-data',
     '/table',
     '/table-vertical',
   ]
