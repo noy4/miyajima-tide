@@ -1,4 +1,4 @@
-import { presetDaisy } from '@ameinhardt/unocss-preset-daisy'
+// import { presetDaisy } from '@ameinhardt/unocss-preset-daisy'
 import { defineConfig, presetWind4 } from 'unocss'
 
 export default defineConfig({
@@ -8,6 +8,7 @@ export default defineConfig({
         reset: true,
       },
     }),
-    presetDaisy(),
+    // [Error on GH Pages Deploy · Issue #20 · ameinhardt/unocss-preset-daisy](https://github.com/ameinhardt/unocss-preset-daisy/issues/20)
+    // presetDaisy(),
   ],
 })
