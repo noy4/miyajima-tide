@@ -7,7 +7,6 @@
 
 <script lang='ts'>
   import highTideImg from '$lib/assets/high-tide.png'
-  import lowTideImg from '$lib/assets/low-tide.png'
   import { WeatherState } from '$lib/state.svelte'
   import { format, parseISO } from 'date-fns'
 
@@ -46,8 +45,10 @@
               <td>
                 <div class='flex flex-col items-center'>
                   <img src={day.condition_icon} alt={day.condition_text} class='w-32' />
-                  {day.condition_text}
-                  <div>{day.maxtemp_c}° / {day.mintemp_c}°</div>
+                  <div class='text-3xl font-bold'>
+                    <span class='text-red-500'>{Math.round(day.maxtemp_c)}°</span> /
+                    <span class='text-blue-500'>{Math.round(day.mintemp_c)}°</span>
+                  </div>
                 </div>
               </td>
             {/each}
