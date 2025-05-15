@@ -19,10 +19,6 @@
   main {
     font-family: 'Caveat', cursive;
   }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
   th, td {
     border: 1px solid #ccc;
     padding: 6px;
@@ -33,10 +29,10 @@
   }
 </style>
 
-<main class='p-4'>
-  <div class='text-2xl p-4 max-w-4xl bg-white rounded rounded-xl'>
-    <div class='overflow-x-auto w-full'>
-      <table>
+<main class='flex justify-center items-center h-screen p-4'>
+  <div class='text-2xl p-4 max-w-4xl w-full bg-white rounded rounded-xl'>
+    <div class='overflow-x-auto'>
+      <table class='w-full border-collapse'>
         <tbody>
           <tr>
             <th></th>
