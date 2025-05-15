@@ -17,6 +17,7 @@ export interface DateData {
 
 export class WeatherState {
   data: DateData[] = $state([])
+  loading = $state(true)
 
   constructor() {
     $effect(() => {
@@ -53,10 +54,12 @@ export class WeatherState {
   }
 
   async fetchData() {
+    this.loading = true
     const [weatherData, tideData] = await Promise.all([
       getTodaysAndTomorrowsWeather(),
       getTideData(),
     ])
+    this.loading = false
     const days = weatherData.forecast.forecastday.slice(0, 2)
     this.data = days.map((day) => {
       const date = day.date

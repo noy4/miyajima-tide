@@ -11,7 +11,7 @@
   import { format, parseISO } from 'date-fns'
 
   const state = new WeatherState()
-  const forecast = $derived(state.data)
+  const { data: forecast, loading } = $derived(state)
 </script>
 
 <style>
@@ -30,70 +30,74 @@
 
 <main class='flex justify-center items-center min-h-100dvh p-4'>
   <div class='text-2xl p-16 max-w-4xl w-full bg-white rounded rounded-xl'>
-    <div class='overflow-x-auto'>
-      <table class='w-full border-collapse'>
-        <tbody>
-          <tr>
-            <th></th>
-            {#each forecast as day}
-              <th>{format(parseISO(day.date), 'M.d (E)')}</th>
-            {/each}
-          </tr>
-          <tr>
-            <td></td>
-            {#each forecast as day}
-              <td>
-                <div class='flex flex-col items-center'>
-                  <img src={day.condition_icon} alt={day.condition_text} class='w-32' />
-                  <div class='text-3xl font-bold'>
-                    <span class='text-red-500'>{Math.round(day.maxtemp_c)}°</span> /
-                    <span class='text-blue-500'>{Math.round(day.mintemp_c)}°</span>
+    {#if loading}
+      ...loading
+    {:else}
+      <div class='overflow-x-auto'>
+        <table class='w-full border-collapse'>
+          <tbody>
+            <tr>
+              <th></th>
+              {#each forecast as day}
+                <th>{format(parseISO(day.date), 'M.d (E)')}</th>
+              {/each}
+            </tr>
+            <tr>
+              <td></td>
+              {#each forecast as day}
+                <td>
+                  <div class='flex flex-col items-center'>
+                    <img src={day.condition_icon} alt={day.condition_text} class='w-32' />
+                    <div class='text-3xl font-bold'>
+                      <span class='text-red-500'>{Math.round(day.maxtemp_c)}°</span> /
+                      <span class='text-blue-500'>{Math.round(day.mintemp_c)}°</span>
+                    </div>
                   </div>
+                </td>
+              {/each}
+            </tr>
+            <tr>
+              <td>Sunrise / Sunset</td>
+              {#each forecast as day}
+                <td>
+                  {day.sunrise}<br />
+                  {day.sunset}
+                </td>
+              {/each}
+            </tr>
+            <tr>
+              <td>
+                <div class='flex justify-center items-center'>
+                  High Tide
+                  <img src={highTideImg} alt='high tide' class='w-20' />
                 </div>
               </td>
-            {/each}
-          </tr>
-          <tr>
-            <td>Sunrise / Sunset</td>
-            {#each forecast as day}
+              {#each forecast as day}
+                <td>
+                  {#each day.highTides.filter(t => t.time) as tide}
+                    <div>{tide.time}</div>
+                  {/each}
+                </td>
+              {/each}
+            </tr>
+            <tr>
               <td>
-                {day.sunrise}<br />
-                {day.sunset}
+                <div class='flex justify-center items-center'>
+                  <!-- <img src={lowTideImg} alt='high tide' class='w-20' /> -->
+                  Low Tide
+                </div>
               </td>
-            {/each}
-          </tr>
-          <tr>
-            <td>
-              <div class='flex justify-center items-center'>
-                High Tide
-                <img src={highTideImg} alt='high tide' class='w-20' />
-              </div>
-            </td>
-            {#each forecast as day}
-              <td>
-                {#each day.highTides.filter(t => t.time) as tide}
-                  <div>{tide.time}</div>
-                {/each}
-              </td>
-            {/each}
-          </tr>
-          <tr>
-            <td>
-              <div class='flex justify-center items-center'>
-                <!-- <img src={lowTideImg} alt='high tide' class='w-20' /> -->
-                Low Tide
-              </div>
-            </td>
-            {#each forecast as day}
-              <td>
-                {#each day.lowTides.filter(t => t.time) as tide}
-                  <div>{tide.time}</div>
-                {/each}
-              </td>
-            {/each}
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              {#each forecast as day}
+                <td>
+                  {#each day.lowTides.filter(t => t.time) as tide}
+                    <div>{tide.time}</div>
+                  {/each}
+                </td>
+              {/each}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    {/if}
   </div>
 </main>
