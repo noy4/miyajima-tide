@@ -28,7 +28,7 @@
   }
 </style>
 
-<main class='flex justify-center items-center h-100dvh p-4'>
+<main class='flex justify-center items-center min-h-100dvh p-4'>
   <div class='text-2xl p-16 max-w-4xl w-full bg-white rounded rounded-xl'>
     <div class='overflow-x-auto'>
       <table class='w-full border-collapse'>

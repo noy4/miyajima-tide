@@ -20,7 +20,35 @@ export class WeatherState {
 
   constructor() {
     $effect(() => {
-      this.fetchData()
+      const scheduleFetch = () => {
+        const now = new Date()
+        const tomorrow = new Date(now)
+        tomorrow.setDate(now.getDate() + 1)
+        tomorrow.setHours(0, 0, 0, 0) // Next midnight
+
+        const timeToMidnight = tomorrow.getTime() - now.getTime()
+
+        const timeoutId = setTimeout(() => {
+          this.fetchData()
+          // After the first fetch at midnight, set an interval for every 24 hours
+          const intervalId = setInterval(() => {
+            this.fetchData()
+          }, 24 * 60 * 60 * 1000) // 24 hours in milliseconds
+
+          // Cleanup interval on component destroy
+          return () => clearInterval(intervalId)
+        }, timeToMidnight)
+
+        // Cleanup timeout on component destroy
+        return () => clearTimeout(timeoutId)
+      }
+
+      this.fetchData() // Initial fetch
+      const cleanupScheduledFetch = scheduleFetch()
+
+      return () => {
+        cleanupScheduledFetch()
+      }
     })
   }
 
@@ -45,6 +73,7 @@ export class WeatherState {
         lowTides: tide.lowTides,
       }
     })
+    console.info('Weather data fetched:', $state.snapshot(this.data))
   }
 }
 
