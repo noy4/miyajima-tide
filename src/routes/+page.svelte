@@ -22,10 +22,15 @@
   main {
     font-family: 'Caveat', cursive;
   }
-  th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: center;
+  table {
+    tr:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 6px;
+      text-align: center;
+    }
   }
 </style>
 
