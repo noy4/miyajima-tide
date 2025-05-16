@@ -29,7 +29,7 @@
 </style>
 
 <main class='flex justify-center items-center min-h-100dvh p-2'>
-  <div class='text-2xl px-2 sm:px-16 py-16 max-w-4xl w-full bg-white rounded rounded-xl'>
+  <div class='text-4xl px-2 sm:px-16 py-16 max-w-4xl w-full bg-white rounded rounded-xl'>
     {#if loading}
       ...loading
     {:else}
@@ -48,7 +48,7 @@
                 <td>
                   <div class='flex flex-col items-center'>
                     <img src={day.condition_icon} alt={day.condition_text} class='w-32' />
-                    <div class='text-3xl font-bold'>
+                    <div class='font-900'>
                       <span class='text-red-500'>{Math.round(day.maxtemp_c)}°</span> /
                       <span class='text-blue-500'>{Math.round(day.mintemp_c)}°</span>
                     </div>
