@@ -43,6 +43,7 @@
                 <th>{format(parseISO(day.date), 'M.d (E)')}</th>
               {/each}
             </tr>
+
             <tr>
               <td></td>
               {#each forecast as day}
@@ -57,6 +58,7 @@
                 </td>
               {/each}
             </tr>
+
             <tr>
               <td>Sunrise / Sunset</td>
               {#each forecast as day}
@@ -66,6 +68,7 @@
                 </td>
               {/each}
             </tr>
+
             <tr>
               <td>
                 <div class='flex justify-center items-center gap-2'>
@@ -81,6 +84,7 @@
                 </td>
               {/each}
             </tr>
+
             <tr>
               <td>
                 <div class='flex justify-center items-center gap-2'>
