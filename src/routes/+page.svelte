@@ -7,6 +7,7 @@
 
 <script lang='ts'>
   import highTideImg from '$lib/assets/high-tide.png'
+  import lowTideImg from '$lib/assets/low-tide.png'
   import { WeatherState } from '$lib/state.svelte'
   import { format, parseISO } from 'date-fns'
 
@@ -67,7 +68,7 @@
             </tr>
             <tr>
               <td>
-                <div class='flex justify-center items-center'>
+                <div class='flex justify-center items-center gap-2'>
                   High Tide
                   <img src={highTideImg} alt='high tide' class='w-20' />
                 </div>
@@ -82,9 +83,9 @@
             </tr>
             <tr>
               <td>
-                <div class='flex justify-center items-center'>
-                  <!-- <img src={lowTideImg} alt='high tide' class='w-20' /> -->
+                <div class='flex justify-center items-center gap-2'>
                   Low Tide
+                  <img src={lowTideImg} alt='high tide' class='w-20' />
                 </div>
               </td>
               {#each forecast as day}
