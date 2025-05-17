@@ -68,7 +68,7 @@
             </tr>
 
             <tr>
-              <td>Sunrise / Sunset</td>
+              <td>Sunrise<br />Sunset</td>
               {#each forecast as day}
                 <td>
                   {day.sunrise}<br />
