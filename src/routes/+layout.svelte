@@ -1,5 +1,8 @@
 <script lang='ts'>
-  import 'virtual:uno.css'
+  // iPad Safari はキャッシュが非常に強く、CSS の更新を無視することがあります。
+  // 💡 対処法：
+  // 開発中は URL にクエリパラメータをつける（例：<link rel="stylesheet" href="/uno.css?v=123">）
+  import 'virtual:uno.css?v=2'
 
   const { children } = $props()
 
