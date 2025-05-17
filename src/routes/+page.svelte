@@ -8,6 +8,7 @@
 <script lang='ts'>
   import highTideImg from '$lib/assets/high-tide.png'
   import lowTideImg from '$lib/assets/low-tide.png'
+  import miku from '$lib/assets/miku.png'
   import { WeatherState } from '$lib/state.svelte'
   import { format, parseISO } from 'date-fns'
 
@@ -50,7 +51,9 @@
             </tr>
 
             <tr>
-              <td></td>
+              <td>
+                <img src={miku} alt='miku' class='mx-auto w-40'>
+              </td>
               {#each forecast as day}
                 <td>
                   <div class='flex flex-col items-center'>
