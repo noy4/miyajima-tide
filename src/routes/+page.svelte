@@ -52,8 +52,8 @@
 
             <tr>
               <td class='relative'>
-                <div class='absolute top--8 left-0 right-0 pl-12'>
-                  <img src={miku} alt='miku' class='w-48 mx-auto' />
+                <div class='absolute bottom--2 left-0 right-0 pl-12'>
+                  <img src={miku} alt='miku' class='w-40 mx-auto' />
                 </div>
               </td>
               {#each forecast as day}
